@@ -3,7 +3,7 @@ File Name : Chapter - 5 - Assignments
 Developer / Programmer : Christopher Wilson
 Date : 04 / 25
 
-Requirements : The pgram should display 2 random numbers to be added. The program should then pause while the student works on the problem. When the student is ready to check the answer, a key should be pressed to display the answer.
+Requirements : The program should display 2 random numbers to be added. The program should then pause while the student works on the problem. When the student is ready to check the answer, a key should be pressed to display the answer.
 */
 #include <iostream>
 #include <cstdlib>
