@@ -3,30 +3,52 @@ File Name : Chapter - 5 - Assignments
 Developer / Programmer : Christopher Wilson
 Date : 04 / 25
 
-Requirements : The pgram should display 2 random numbers to be added. The program should then pause while the student works on the problem. When the student is ready to check the answer, a key should be pressed to display the answer.
+Requirements : The program should predict the size of a population of organisms by asking the user the starting number of organisms, their average daily population increase as a %, and the number of days they will multiply
 */
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <conio.h>
+#include <iomanip>
 
-    int main() {
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+int main() {
+    int startingPopulation;
+    double dailyIncreasePercent;
+    int numberOfDays;
 
-    int num1 = std::rand() % 100 + 1;
-    int num2 = std::rand() % 100 + 1;
+    do {
+        std::cout << "Enter the starting number of organisms (minimum 2): ";
+        std::cin >> startingPopulation;
 
-    std::cout << "Welcome to the Math Tutor Program!\n\n";
-    std::cout << "Add the following numbers:\n";
-    std::cout << "  " << num1 << "\n+ " << num2 << "\n" << std::endl;
+        if (startingPopulation < 2) {
+            std::cout << "Error: Starting population must be at least 2.\n";
+        }
+    } while (startingPopulation < 2);
 
-    std::cout << "Press any key when you're ready to see the answer...";
-    _getch();
+    do {
+        std::cout << "Enter the average daily population increase (as a percentage, e.g., 5 for 5%): ";
+        std::cin >> dailyIncreasePercent;
 
-    int correctAnswer = num1 + num2;
+        if (dailyIncreasePercent < 0) {
+            std::cout << "Error: Daily increase percentage cannot be negative.\n";
+        }
+    } while (dailyIncreasePercent < 0);
 
-    std::cout << "\n\nThe correct answer is: " << correctAnswer << std::endl;
-    std::cout << "Great job practicing!" << std::endl;
+    do {
+        std::cout << "Enter the number of days the organisms will multiply (minimum 1): ";
+        std::cin >> numberOfDays;
+
+        if (numberOfDays < 1) {
+            std::cout << "Error: Number of days must be at least 1.\n";
+        }
+    } while (numberOfDays < 1);
+
+    std::cout << "\nDay\tPopulation\n";
+    std::cout << "---------------------\n";
+
+    double population = startingPopulation;
+    for (int day = 1; day <= numberOfDays; ++day) {
+        std::cout << std::fixed << std::setprecision(2);
+        std::cout << day << "\t" << population << "\n";
+        population += population * (dailyIncreasePercent / 100);
+    }
 
     return 0;
 }
